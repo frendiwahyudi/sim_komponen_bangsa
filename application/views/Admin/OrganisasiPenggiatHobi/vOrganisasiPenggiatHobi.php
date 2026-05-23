@@ -216,8 +216,6 @@ foreach ($organisasi_penggiat_hobi as $key => $value) {
                                     <input type="text" class="form-control" id="ketua_komunitas" name="ketua_komunitas" value="<?= $value->ketua_komunitas ?>">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="pekerjaan">Pekerjaan</label>
