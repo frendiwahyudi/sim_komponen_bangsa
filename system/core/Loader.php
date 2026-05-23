@@ -327,6 +327,24 @@ class CI_Loader {
 		}
 
 		$model = ucfirst($model);
+
+		// Resolve actual model filename with case-insensitive fallback for case-sensitive filesystems
+		$_ci_model_lower = strtolower($model);
+		foreach ($this->_ci_model_paths as $_ci_mp)
+		{
+			$_ci_mdir = $_ci_mp.'models/'.$path;
+			if (file_exists($_ci_mdir.$model.'.php')) { break; }
+			if ( ! is_dir($_ci_mdir)) { continue; }
+			foreach (scandir($_ci_mdir) as $_ci_f)
+			{
+				if (substr($_ci_f, -4) === '.php' && strtolower(substr($_ci_f, 0, -4)) === $_ci_model_lower)
+				{
+					$model = substr($_ci_f, 0, -4);
+					break 2;
+				}
+			}
+		}
+
 		if ( ! class_exists($model, FALSE))
 		{
 			foreach ($this->_ci_model_paths as $mod_path)

@@ -94,3 +94,7 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+	// 'username' => 'u145043989_komponenbangsa',
+	// 'password' => 'Simkomponenbangsa123!',
+	// 'database' => 'u145043989_komponenbangsa',
