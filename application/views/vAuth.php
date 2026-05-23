@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Log in</title>
+    <title>Komponen Bangsa | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,13 +49,22 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-<br><center><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center>
+                <div class="text-center">
+                    <img src="<?= base_url('asset/AdminLTE/') ?>dist/img/Lambang_Kodam_Siliwangi.png"
+                        alt="Logo"
+                        class="brand-image elevation-2"
+                        style="opacity:.8; height:200px;">
+                </div>
+                <br>
+                <h3 class="text-center">E-Kombang</h3>
+                <p class="login-box-msg">Staf Teritorial Kodam III/Siliwangi</p>
+                <br>
+
 
                 <form action="<?= base_url('cAuth') ?>" method="post">
                     <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                     <div class="input-group mb-3">
-                        <input type="text" name="username" class="form-control" value="admin" placeholder="Username">
+                        <input type="text" name="username" class="form-control" value="" placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -64,7 +73,7 @@
                     </div>
                     <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" value="admin" placeholder="Password">
+                        <input type="password" name="password" class="form-control" value="" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

@@ -1,6 +1,6 @@
 <footer class="main-footer">
-    <strong>SISTEM INFORMASI ASSET | Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a>
-	</strong>
+    <strong>SISTEM INFORMASI KOMPONEN BANGSA | &copy; 2026
+    </strong>
 
 </footer>
 

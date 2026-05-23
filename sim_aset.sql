@@ -207,7 +207,8 @@ CREATE TABLE `user` (
   `alamat` text NOT NULL,
   `username` varchar(125) NOT NULL,
   `password` varchar(125) NOT NULL,
-  `level_user` int(11) NOT NULL
+  `level_user` int(11) NOT NULL,
+  `id_wilayah` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -333,6 +334,229 @@ ALTER TABLE `penyusutan`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kodam`
+--
+
+CREATE TABLE `kodam` (
+  `id_kodam` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_kodam` varchar(10) NOT NULL UNIQUE,
+  `nama_kodam` varchar(100) NOT NULL,
+  `wilayah` varchar(100),
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_kodam`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `kodam`
+--
+ALTER TABLE `kodam`
+  MODIFY `id_kodam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `korem`
+--
+
+CREATE TABLE `korem` (
+  `id_korem` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kodam` int(11) NOT NULL,
+  `kode_korem` varchar(10) NOT NULL UNIQUE,
+  `nama_korem` varchar(100) NOT NULL,
+  `wilayah` varchar(100),
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_korem`),
+  CONSTRAINT `fk_korem_kodam` FOREIGN KEY (`id_kodam`) REFERENCES `kodam` (`id_kodam`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `korem`
+--
+ALTER TABLE `korem`
+  MODIFY `id_korem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kodim`
+--
+
+CREATE TABLE `kodim` (
+  `id_kodim` int(11) NOT NULL AUTO_INCREMENT,
+  `id_korem` int(11) NOT NULL,
+  `kode_kodim` varchar(10) NOT NULL UNIQUE,
+  `nama_kodim` varchar(100) NOT NULL,
+  `wilayah` varchar(100),
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_kodim`),
+  CONSTRAINT `fk_kodim_korem` FOREIGN KEY (`id_korem`) REFERENCES `korem` (`id_korem`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `kodim`
+--
+ALTER TABLE `kodim`
+  MODIFY `id_kodim` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `koramil`
+--
+
+CREATE TABLE `koramil` (
+  `id_koramil` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kodim` int(11) NOT NULL,
+  `kode_koramil` varchar(10) NOT NULL UNIQUE,
+  `nama_koramil` varchar(100) NOT NULL,
+  `wilayah` varchar(100),
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_koramil`),
+  CONSTRAINT `fk_koramil_kodim` FOREIGN KEY (`id_kodim`) REFERENCES `kodim` (`id_kodim`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `koramil`
+--
+ALTER TABLE `koramil`
+  MODIFY `id_koramil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `babinsa`
+--
+
+CREATE TABLE `babinsa` (
+  `id_babinsa` int(11) NOT NULL AUTO_INCREMENT,
+  `id_koramil` int(11) NOT NULL,
+  `nrp` varchar(30) NOT NULL UNIQUE,
+  `nama_babinsa` varchar(100) NOT NULL,
+  `pangkat` varchar(50),
+  `jabatan` varchar(100),
+  `no_hp` varchar(20),
+  `alamat` text,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_babinsa`),
+  CONSTRAINT `fk_babinsa_koramil` FOREIGN KEY (`id_koramil`) REFERENCES `koramil` (`id_koramil`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `babinsa`
+--
+ALTER TABLE `babinsa`
+  MODIFY `id_babinsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_keluarga_besar_tni`
+--
+
+CREATE TABLE `data_keluarga_besar_tni` (
+  `id_kbt` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kodim` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `keterangan` text,
+  `alamat` text,
+  `no_hp` varchar(20),
+  `pekerjaan` varchar(100),
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_kbt`),
+  CONSTRAINT `fk_kbt_kodim` FOREIGN KEY (`id_kodim`) REFERENCES `kodim` (`id_kodim`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `data_keluarga_besar_tni`
+--
+ALTER TABLE `data_keluarga_besar_tni`
+  MODIFY `id_kbt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_para_tokoh`
+--
+
+CREATE TABLE `data_para_tokoh` (
+  `id_tokoh` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kodim` int(11) NOT NULL,
+  `nama_tokoh` varchar(100) NOT NULL,
+  `kategori_tokoh` varchar(100),
+  `pekerjaan` varchar(100),
+  `alamat` text,
+  `no_hp` varchar(20),
+  `keterangan` text,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_tokoh`),
+  CONSTRAINT `fk_tokoh_kodim` FOREIGN KEY (`id_kodim`) REFERENCES `kodim` (`id_kodim`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `data_para_tokoh`
+--
+ALTER TABLE `data_para_tokoh`
+  MODIFY `id_tokoh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_organisasi`
+--
+
+CREATE TABLE `data_organisasi` (
+  `id_organisasi` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kodim` int(11) NOT NULL,
+  `nama_organisasi` varchar(150) NOT NULL,
+  `kelompok_organisasi` varchar(100),
+  `jenis_organisasi` varchar(100),
+  `ketua_organisasi` varchar(100),
+  `pekerjaan` varchar(100),
+  `alamat` text,
+  `no_hp` varchar(20),
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_organisasi`),
+  CONSTRAINT `fk_organisasi_kodim` FOREIGN KEY (`id_kodim`) REFERENCES `kodim` (`id_kodim`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `data_organisasi`
+--
+ALTER TABLE `data_organisasi`
+  MODIFY `id_organisasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `organisasi_penggiat_hobi`
+--
+
+CREATE TABLE `organisasi_penggiat_hobi` (
+  `id_hobi` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kodim` int(11) NOT NULL,
+  `nama_komunitas` varchar(150) NOT NULL,
+  `jenis_hobi` varchar(100),
+  `ketua_komunitas` varchar(100),
+  `pekerjaan` varchar(100),
+  `no_hp` varchar(20),
+  `alamat` text,
+  `jumlah_anggota` int,
+  `keterangan` text,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_hobi`),
+  CONSTRAINT `fk_hobi_kodim` FOREIGN KEY (`id_kodim`) REFERENCES `kodim` (`id_kodim`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- AUTO_INCREMENT untuk tabel `organisasi_penggiat_hobi`
+--
+ALTER TABLE `organisasi_penggiat_hobi`
+  MODIFY `id_hobi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

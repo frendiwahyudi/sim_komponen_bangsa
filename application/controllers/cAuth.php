@@ -26,13 +26,21 @@ class cAuth extends CI_Controller
             if ($auth) {
 
                 $array = array(
-                    'id' => $auth->id_user
+                    'id' => $auth->id_user,
                 );
 
                 $this->session->set_userdata($array);
 
                 if ($auth->level_user == '1') {
                     redirect('Admin/cDashboard');
+                } elseif ($auth->level_user == '2') {
+                    redirect('KepalaDesa/cDashboard');
+                } elseif ($auth->level_user == '3') {
+                    redirect('Kodam/cDashboard');
+                } elseif ($auth->level_user == '4') {
+                    redirect('Korem/cDashboard');
+                } elseif ($auth->level_user == '5') {
+                    redirect('Kodim/cDashboard');
                 } else {
                     redirect('KepalaDesa/cDashboard');
                 }

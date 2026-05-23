@@ -6,10 +6,11 @@ class mAuth extends CI_Model
     public function Auth($username, $password)
     {
         $this->db->select('*');
-        $this->db->from('user');
+        $this->db->from('user u');
+        $this->db->join('level_user l', 'u.level_user = l.id_level');
         $this->db->where(array(
-            'username' => $username,
-            'password' => $password
+            'u.username' => $username,
+            'u.password' => $password
         ));
         return $this->db->get()->row();
     }
