@@ -23,7 +23,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/sim_komponen_bangsa/';
+if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'localhost') === FALSE) {
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+    $config['base_url'] = $protocol . '://' . $_SERVER['HTTP_HOST'] . '/';
+} else {
+    $config['base_url'] = 'http://localhost/sim_komponen_bangsa/';
+}
 
 /*
 |--------------------------------------------------------------------------

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'sim_komponen_bangsa',
+	'hostname' => '153.92.15.32',
+	'username' => 'u145043989_komponenbangsa',
+	'password' => 'Simkomponenbangsa123!',
+	'database' => 'u145043989_komponenbangsa',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -94,7 +94,7 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
+	// 'hostname' => '153.92.15.32',
 	// 'username' => 'u145043989_komponenbangsa',
 	// 'password' => 'Simkomponenbangsa123!',
 	// 'database' => 'u145043989_komponenbangsa',
