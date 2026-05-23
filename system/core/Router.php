@@ -302,10 +302,30 @@ class CI_Router {
 			$method = 'index';
 		}
 
-		if ( ! file_exists(APPPATH.'controllers/'.$this->directory.ucfirst($class).'.php'))
+		$_ci_path = APPPATH.'controllers/'.$this->directory;
+		if (file_exists($_ci_path.ucfirst($class).'.php'))
 		{
-			// This will trigger 404 later
-			return;
+			$class = ucfirst($class);
+		}
+		elseif ( ! file_exists($_ci_path.$class.'.php'))
+		{
+			$_ci_lower = strtolower($class);
+			$class = NULL;
+			if (is_dir($_ci_path))
+			{
+				foreach (scandir($_ci_path) as $_ci_f)
+				{
+					if (substr($_ci_f, -4) === '.php' && strtolower(substr($_ci_f, 0, -4)) === $_ci_lower)
+					{
+						$class = substr($_ci_f, 0, -4);
+						break;
+					}
+				}
+			}
+			if ($class === NULL)
+			{
+				return; // This will trigger 404 later
+			}
 		}
 
 		$this->set_class($class);

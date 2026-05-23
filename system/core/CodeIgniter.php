@@ -400,7 +400,32 @@ if ( ! is_php('5.4'))
  */
 
 	$e404 = FALSE;
-	$class = ucfirst($RTR->class);
+	$_ci_class_raw = $RTR->class;
+	$_ci_ctrl_path = APPPATH.'controllers/'.$RTR->directory;
+	if (file_exists($_ci_ctrl_path.ucfirst($_ci_class_raw).'.php'))
+	{
+		$class = ucfirst($_ci_class_raw);
+	}
+	elseif (file_exists($_ci_ctrl_path.$_ci_class_raw.'.php'))
+	{
+		$class = $_ci_class_raw;
+	}
+	else
+	{
+		$_ci_lower = strtolower($_ci_class_raw);
+		$class = NULL;
+		if (is_dir($_ci_ctrl_path))
+		{
+			foreach (scandir($_ci_ctrl_path) as $_ci_f)
+			{
+				if (substr($_ci_f, -4) === '.php' && strtolower(substr($_ci_f, 0, -4)) === $_ci_lower)
+				{
+					$class = substr($_ci_f, 0, -4);
+					break;
+				}
+			}
+		}
+	}
 	$method = $RTR->method;
 
 	if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
