@@ -929,6 +929,42 @@ class CI_Loader {
 					break;
 				}
 
+				// Case-insensitive fallback for case-sensitive filesystems
+				$_ci_resolved = $_ci_view_file;
+				$_ci_ci_found = TRUE;
+				foreach (explode('/', $_ci_file) as $_ci_part)
+				{
+					if ($_ci_part === '') { continue; }
+					if (file_exists($_ci_resolved.$_ci_part))
+					{
+						$_ci_resolved .= $_ci_part.(is_dir($_ci_resolved.$_ci_part) ? '/' : '');
+					}
+					else
+					{
+						$_ci_part_lower = strtolower($_ci_part);
+						$_ci_part_found = FALSE;
+						if (is_dir($_ci_resolved))
+						{
+							foreach (scandir($_ci_resolved) as $_ci_e)
+							{
+								if (strtolower($_ci_e) === $_ci_part_lower)
+								{
+									$_ci_resolved .= $_ci_e.(is_dir($_ci_resolved.$_ci_e) ? '/' : '');
+									$_ci_part_found = TRUE;
+									break;
+								}
+							}
+						}
+						if ( ! $_ci_part_found) { $_ci_ci_found = FALSE; break; }
+					}
+				}
+				if ($_ci_ci_found && file_exists($_ci_resolved))
+				{
+					$_ci_path = $_ci_resolved;
+					$file_exists = TRUE;
+					break;
+				}
+
 				if ( ! $cascade)
 				{
 					break;

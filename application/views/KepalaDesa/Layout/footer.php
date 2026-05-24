@@ -30,7 +30,6 @@
 <!-- overlayScrollbars -->
 <script src="<?= base_url('asset/AdminLTE/') ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?= base_url('asset/AdminLTE/') ?>dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= base_url('asset/AdminLTE/') ?>dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->

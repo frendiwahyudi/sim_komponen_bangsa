@@ -96,40 +96,224 @@ class cKelolaData extends CI_Controller
         $this->load->view('Korem/Layout/footer');
     }
 
+    // ===================== KOMPONEN BANGSA (CRUD) =====================
+
+    // --- Data Keluarga Besar TNI ---
     public function data_keluarga_besar_tni()
     {
-        $data = array('data_keluarga_besar_tni' => $this->mKelolaData->select_data_keluarga_besar_tni());
+        $id_korem = $this->_get_id_korem();
+        $data = array(
+            'data_keluarga_besar_tni' => $this->mKelolaData->select_data_keluarga_besar_tni_by_korem($id_korem),
+            'kodim'                   => $this->mKelolaData->select_kodim_by_korem($id_korem),
+        );
         $this->load->view('Korem/Layout/head');
         $this->load->view('Korem/Layout/aside');
         $this->load->view('Korem/DataKeluargaBesarTni/vDataKeluargaBesarTni', $data);
         $this->load->view('Korem/Layout/footer');
     }
 
+    public function createdata_keluarga_besar_tni()
+    {
+        $data = array(
+            'id_kodim'    => $this->input->post('id_kodim'),
+            'kelompok_kbt'=> $this->input->post('kelompok_kbt'),
+            'nama'        => $this->input->post('nama'),
+            'pekerjaan'   => $this->input->post('pekerjaan'),
+            'no_hp'       => $this->input->post('no_hp'),
+            'alamat'      => $this->input->post('alamat'),
+            'keterangan'  => $this->input->post('keterangan'),
+        );
+        $this->mKelolaData->insert_data_keluarga_besar_tni($data);
+        $this->session->set_flashdata('success', 'Data Keluarga Besar TNI Berhasil Ditambahkan!');
+        redirect('Korem/cKelolaData/data_keluarga_besar_tni');
+    }
+
+    public function updatedata_keluarga_besar_tni($id)
+    {
+        $data = array(
+            'id_kodim'    => $this->input->post('id_kodim'),
+            'kelompok_kbt'=> $this->input->post('kelompok_kbt'),
+            'nama'        => $this->input->post('nama'),
+            'pekerjaan'   => $this->input->post('pekerjaan'),
+            'no_hp'       => $this->input->post('no_hp'),
+            'alamat'      => $this->input->post('alamat'),
+            'keterangan'  => $this->input->post('keterangan'),
+        );
+        $this->mKelolaData->updatedata_keluarga_besar_tni($id, $data);
+        $this->session->set_flashdata('success', 'Data Keluarga Besar TNI Berhasil Diperbaharui!');
+        redirect('Korem/cKelolaData/data_keluarga_besar_tni');
+    }
+
+    public function deletedata_keluarga_besar_tni($id)
+    {
+        $this->mKelolaData->deletedata_keluarga_besar_tni($id);
+        $this->session->set_flashdata('success', 'Data Keluarga Besar TNI Berhasil Dihapus!');
+        redirect('Korem/cKelolaData/data_keluarga_besar_tni');
+    }
+
+    // --- Data Para Tokoh ---
     public function data_para_tokoh()
     {
-        $data = array('data_para_tokoh' => $this->mKelolaData->select_data_para_tokoh());
+        $id_korem = $this->_get_id_korem();
+        $data = array(
+            'data_para_tokoh' => $this->mKelolaData->select_data_para_tokoh_by_korem($id_korem),
+            'kodim'           => $this->mKelolaData->select_kodim_by_korem($id_korem),
+        );
         $this->load->view('Korem/Layout/head');
         $this->load->view('Korem/Layout/aside');
         $this->load->view('Korem/DataParaTokoh/vDataParaTokoh', $data);
         $this->load->view('Korem/Layout/footer');
     }
 
+    public function createdata_para_tokoh()
+    {
+        $data = array(
+            'id_kodim'       => $this->input->post('id_kodim'),
+            'nama_tokoh'     => $this->input->post('nama_tokoh'),
+            'kategori_tokoh' => $this->input->post('kategori_tokoh'),
+            'pekerjaan'      => $this->input->post('pekerjaan'),
+            'alamat'         => $this->input->post('alamat'),
+            'no_hp'          => $this->input->post('no_hp'),
+            'keterangan'     => $this->input->post('keterangan'),
+        );
+        $this->mKelolaData->insert_data_para_tokoh($data);
+        $this->session->set_flashdata('success', 'Data Para Tokoh Berhasil Ditambahkan!');
+        redirect('Korem/cKelolaData/data_para_tokoh');
+    }
+
+    public function updatedata_para_tokoh($id)
+    {
+        $data = array(
+            'id_kodim'       => $this->input->post('id_kodim'),
+            'nama_tokoh'     => $this->input->post('nama_tokoh'),
+            'kategori_tokoh' => $this->input->post('kategori_tokoh'),
+            'pekerjaan'      => $this->input->post('pekerjaan'),
+            'alamat'         => $this->input->post('alamat'),
+            'no_hp'          => $this->input->post('no_hp'),
+            'keterangan'     => $this->input->post('keterangan'),
+        );
+        $this->mKelolaData->updatedata_para_tokoh($id, $data);
+        $this->session->set_flashdata('success', 'Data Para Tokoh Berhasil Diperbaharui!');
+        redirect('Korem/cKelolaData/data_para_tokoh');
+    }
+
+    public function deletedata_para_tokoh($id)
+    {
+        $this->mKelolaData->deletedata_para_tokoh($id);
+        $this->session->set_flashdata('success', 'Data Para Tokoh Berhasil Dihapus!');
+        redirect('Korem/cKelolaData/data_para_tokoh');
+    }
+
+    // --- Data Organisasi ---
     public function data_organisasi()
     {
-        $data = array('data_organisasi' => $this->mKelolaData->select_data_organisasi());
+        $id_korem = $this->_get_id_korem();
+        $data = array(
+            'data_organisasi' => $this->mKelolaData->select_data_organisasi_by_korem($id_korem),
+            'kodim'           => $this->mKelolaData->select_kodim_by_korem($id_korem),
+        );
         $this->load->view('Korem/Layout/head');
         $this->load->view('Korem/Layout/aside');
         $this->load->view('Korem/DataOrganisasi/vDataOrganisasi', $data);
         $this->load->view('Korem/Layout/footer');
     }
 
+    public function createdata_organisasi()
+    {
+        $data = array(
+            'id_kodim'            => $this->input->post('id_kodim'),
+            'nama_organisasi'     => $this->input->post('nama_organisasi'),
+            'kelompok_organisasi' => $this->input->post('kelompok_organisasi'),
+            'jenis_organisasi'    => $this->input->post('jenis_organisasi'),
+            'ketua_organisasi'    => $this->input->post('ketua_organisasi'),
+            'pekerjaan'           => $this->input->post('pekerjaan'),
+            'alamat'              => $this->input->post('alamat'),
+            'no_hp'               => $this->input->post('no_hp'),
+        );
+        $this->mKelolaData->insert_data_organisasi($data);
+        $this->session->set_flashdata('success', 'Data Organisasi Berhasil Ditambahkan!');
+        redirect('Korem/cKelolaData/data_organisasi');
+    }
+
+    public function updatedata_organisasi($id)
+    {
+        $data = array(
+            'id_kodim'            => $this->input->post('id_kodim'),
+            'nama_organisasi'     => $this->input->post('nama_organisasi'),
+            'kelompok_organisasi' => $this->input->post('kelompok_organisasi'),
+            'jenis_organisasi'    => $this->input->post('jenis_organisasi'),
+            'ketua_organisasi'    => $this->input->post('ketua_organisasi'),
+            'pekerjaan'           => $this->input->post('pekerjaan'),
+            'alamat'              => $this->input->post('alamat'),
+            'no_hp'               => $this->input->post('no_hp'),
+        );
+        $this->mKelolaData->updatedata_organisasi($id, $data);
+        $this->session->set_flashdata('success', 'Data Organisasi Berhasil Diperbaharui!');
+        redirect('Korem/cKelolaData/data_organisasi');
+    }
+
+    public function deletedata_organisasi($id)
+    {
+        $this->mKelolaData->deletedata_organisasi($id);
+        $this->session->set_flashdata('success', 'Data Organisasi Berhasil Dihapus!');
+        redirect('Korem/cKelolaData/data_organisasi');
+    }
+
+    // --- Organisasi Penggiat Hobi ---
     public function organisasi_penggiat_hobi()
     {
-        $data = array('organisasi_penggiat_hobi' => $this->mKelolaData->select_organisasi_penggiat_hobi());
+        $id_korem = $this->_get_id_korem();
+        $data = array(
+            'organisasi_penggiat_hobi' => $this->mKelolaData->select_organisasi_penggiat_hobi_by_korem($id_korem),
+            'kodim'                    => $this->mKelolaData->select_kodim_by_korem($id_korem),
+        );
         $this->load->view('Korem/Layout/head');
         $this->load->view('Korem/Layout/aside');
         $this->load->view('Korem/OrganisasiPenggiatHobi/vOrganisasiPenggiatHobi', $data);
         $this->load->view('Korem/Layout/footer');
+    }
+
+    public function createorganisasi_penggiat_hobi()
+    {
+        $data = array(
+            'id_kodim'        => $this->input->post('id_kodim'),
+            'nama_komunitas'  => $this->input->post('nama_komunitas'),
+            'jenis_hobi'      => $this->input->post('jenis_hobi'),
+            'ketua_komunitas' => $this->input->post('ketua_komunitas'),
+            'pekerjaan'       => $this->input->post('pekerjaan'),
+            'no_hp'           => $this->input->post('no_hp'),
+            'alamat'          => $this->input->post('alamat'),
+            'jumlah_anggota'  => $this->input->post('jumlah_anggota'),
+            'keterangan'      => $this->input->post('keterangan'),
+        );
+        $this->mKelolaData->insert_organisasi_penggiat_hobi($data);
+        $this->session->set_flashdata('success', 'Data Organisasi Penggiat Hobi Berhasil Ditambahkan!');
+        redirect('Korem/cKelolaData/organisasi_penggiat_hobi');
+    }
+
+    public function updateorganisasi_penggiat_hobi($id)
+    {
+        $data = array(
+            'id_kodim'        => $this->input->post('id_kodim'),
+            'nama_komunitas'  => $this->input->post('nama_komunitas'),
+            'jenis_hobi'      => $this->input->post('jenis_hobi'),
+            'ketua_komunitas' => $this->input->post('ketua_komunitas'),
+            'pekerjaan'       => $this->input->post('pekerjaan'),
+            'no_hp'           => $this->input->post('no_hp'),
+            'alamat'          => $this->input->post('alamat'),
+            'jumlah_anggota'  => $this->input->post('jumlah_anggota'),
+            'keterangan'      => $this->input->post('keterangan'),
+        );
+        $this->mKelolaData->updateorganisasi_penggiat_hobi($id, $data);
+        $this->session->set_flashdata('success', 'Data Organisasi Penggiat Hobi Berhasil Diperbaharui!');
+        redirect('Korem/cKelolaData/organisasi_penggiat_hobi');
+    }
+
+    public function deleteorganisasi_penggiat_hobi($id)
+    {
+        $this->mKelolaData->deleteorganisasi_penggiat_hobi($id);
+        $this->session->set_flashdata('success', 'Data Organisasi Penggiat Hobi Berhasil Dihapus!');
+        redirect('Korem/cKelolaData/organisasi_penggiat_hobi');
     }
 }
 

@@ -309,6 +309,51 @@ class mKelolaData extends CI_Model
         $this->db->where('id_hobi', $id);
         $this->db->delete('organisasi_penggiat_hobi');
     }
+
+    // ===== Korem: filtered by id_korem =====
+
+    public function select_kodim_by_korem($id_korem)
+    {
+        $this->db->from('kodim');
+        $this->db->where('id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
+
+    public function select_data_keluarga_besar_tni_by_korem($id_korem)
+    {
+        $this->db->select('dkbt.*, kd.nama_kodim, kd.kode_kodim');
+        $this->db->from('data_keluarga_besar_tni dkbt');
+        $this->db->join('kodim kd', 'dkbt.id_kodim = kd.id_kodim', 'left');
+        $this->db->where('kd.id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
+
+    public function select_data_para_tokoh_by_korem($id_korem)
+    {
+        $this->db->select('dpt.*, kd.nama_kodim, kd.kode_kodim');
+        $this->db->from('data_para_tokoh dpt');
+        $this->db->join('kodim kd', 'dpt.id_kodim = kd.id_kodim', 'left');
+        $this->db->where('kd.id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
+
+    public function select_data_organisasi_by_korem($id_korem)
+    {
+        $this->db->select('do.*, kd.nama_kodim, kd.kode_kodim');
+        $this->db->from('data_organisasi do');
+        $this->db->join('kodim kd', 'do.id_kodim = kd.id_kodim', 'left');
+        $this->db->where('kd.id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
+
+    public function select_organisasi_penggiat_hobi_by_korem($id_korem)
+    {
+        $this->db->select('oph.*, kd.nama_kodim, kd.kode_kodim');
+        $this->db->from('organisasi_penggiat_hobi oph');
+        $this->db->join('kodim kd', 'oph.id_kodim = kd.id_kodim', 'left');
+        $this->db->where('kd.id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
 }
 
 /* End of file mKelolaData.php */
