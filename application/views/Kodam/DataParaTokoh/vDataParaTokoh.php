@@ -28,7 +28,7 @@
                                         <th class="text-center">No HP</th>
                                         <th class="text-center">Alamat</th>
                                         <th class="text-center">Kategori</th>
-                                        <th class="text-center">Kodim</th>
+                                        <th class="text-center">Satuan</th>
                                     </tr>
                                 </thead>
                                 <tbody>

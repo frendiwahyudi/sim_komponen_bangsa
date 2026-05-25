@@ -264,6 +264,29 @@ class mKelolaData extends CI_Model
         $this->db->delete('data_para_tokoh');
     }
 
+    //data_para_tokoh_korem
+    public function select_data_para_tokoh_korem()
+    {
+        $this->db->select('dptkr.*, kr.nama_korem, kr.kode_korem');
+        $this->db->from('data_para_tokoh_korem dptkr');
+        $this->db->join('korem kr', 'dptkr.id_korem = kr.id_korem', 'left');
+        return $this->db->get()->result();
+    }
+    public function insert_data_para_tokoh_korem($data)
+    {
+        $this->db->insert('data_para_tokoh_korem', $data);
+    }
+    public function update_data_para_tokoh_korem($id, $data)
+    {
+        $this->db->where('id_tokoh_korem', $id);
+        $this->db->update('data_para_tokoh_korem', $data);
+    }
+    public function delete_data_para_tokoh_korem($id)
+    {
+        $this->db->where('id_tokoh_korem', $id);
+        $this->db->delete('data_para_tokoh_korem');
+    }
+
     //data_organisasi
     public function select_data_organisasi()
     {
@@ -287,6 +310,29 @@ class mKelolaData extends CI_Model
         $this->db->delete('data_organisasi');
     }
 
+    //data_organisasi_korem
+    public function select_data_organisasi_korem()
+    {
+        $this->db->select('dokr.*, kr.nama_korem, kr.kode_korem');
+        $this->db->from('data_organisasi_korem dokr');
+        $this->db->join('korem kr', 'dokr.id_korem = kr.id_korem', 'left');
+        return $this->db->get()->result();
+    }
+    public function insert_data_organisasi_korem($data)
+    {
+        $this->db->insert('data_organisasi_korem', $data);
+    }
+    public function update_data_organisasi_korem($id, $data)
+    {
+        $this->db->where('id_organisasi_korem', $id);
+        $this->db->update('data_organisasi_korem', $data);
+    }
+    public function delete_data_organisasi_korem($id)
+    {
+        $this->db->where('id_organisasi_korem', $id);
+        $this->db->delete('data_organisasi_korem');
+    }
+
     //organisasi_penggiat_hobi
     public function select_organisasi_penggiat_hobi()
     {
@@ -308,6 +354,29 @@ class mKelolaData extends CI_Model
     {
         $this->db->where('id_hobi', $id);
         $this->db->delete('organisasi_penggiat_hobi');
+    }
+
+    //organisasi_penggiat_hobi_korem
+    public function select_organisasi_penggiat_hobi_korem()
+    {
+        $this->db->select('ophkr.*, kr.nama_korem, kr.kode_korem');
+        $this->db->from('organisasi_penggiat_hobi_korem ophkr');
+        $this->db->join('korem kr', 'ophkr.id_korem = kr.id_korem', 'left');
+        return $this->db->get()->result();
+    }
+    public function insert_organisasi_penggiat_hobi_korem($data)
+    {
+        $this->db->insert('organisasi_penggiat_hobi_korem', $data);
+    }
+    public function update_organisasi_penggiat_hobi_korem($id, $data)
+    {
+        $this->db->where('id_hobi_korem', $id);
+        $this->db->update('organisasi_penggiat_hobi_korem', $data);
+    }
+    public function delete_organisasi_penggiat_hobi_korem($id)
+    {
+        $this->db->where('id_hobi_korem', $id);
+        $this->db->delete('organisasi_penggiat_hobi_korem');
     }
 
     // ===== Korem: filtered by id_korem =====
@@ -353,6 +422,29 @@ class mKelolaData extends CI_Model
         $this->db->join('kodim kd', 'oph.id_kodim = kd.id_kodim', 'left');
         $this->db->where('kd.id_korem', $id_korem);
         return $this->db->get()->result();
+    }
+
+    //data_keluarga_besar_tni_korem
+    public function select_data_keluarga_besar_tni_korem()
+    {
+        $this->db->select('dkbtkr.*, kr.nama_korem, kr.kode_korem');
+        $this->db->from('data_keluarga_besar_tni_korem dkbtkr');
+        $this->db->join('korem kr', 'dkbtkr.id_korem = kr.id_korem', 'left');
+        return $this->db->get()->result();
+    }
+    public function insert_data_keluarga_besar_tni_korem($data)
+    {
+        $this->db->insert('data_keluarga_besar_tni_korem', $data);
+    }
+    public function update_data_keluarga_besar_tni_korem($id, $data)
+    {
+        $this->db->where('id_kbt_korem', $id);
+        $this->db->update('data_keluarga_besar_tni_korem', $data);
+    }
+    public function delete_data_keluarga_besar_tni_korem($id)
+    {
+        $this->db->where('id_kbt_korem', $id);
+        $this->db->delete('data_keluarga_besar_tni_korem');
     }
 }
 

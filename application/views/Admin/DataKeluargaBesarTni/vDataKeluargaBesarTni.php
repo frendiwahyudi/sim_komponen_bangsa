@@ -35,88 +35,140 @@
             'Korpti Unit TNI',
             'PP Kowad'
         ];
-        if ($this->session->userdata('success')) {
-        ?>
+        if ($this->session->userdata('success')) { ?>
             <div class="alert alert-success alert-dismissible mt-3">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i> Alert!</h5>
                 <?= $this->session->userdata('success') ?>
             </div>
-        <?php
-        } ?>
+        <?php } ?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <button type="button" class="btn btn-default mb-3" data-toggle="modal" data-target="#modal-default">
-                        <i class="fas fa-plus"></i> Tambah Data Keluarga
-                    </button>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Informasi Data Keluarga Besar TNI</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Pekerjaan</th>
-                                        <th class="text-center">Alamat</th>
-                                        <th class="text-center">No HP</th>
-                                        <th class="text-center">Keterangan</th>
-                                        <th class="text-center">Kelompok KBT</th>
-                                        <th class="text-center">Kodim</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $no = 1;
-                                    foreach ($data_keluarga_besar_tni as $key => $value) {
-                                    ?>
-                                        <tr>
-                                            <td class="text-center"><?= $no++ ?></td>
-                                            <td class="text-center"><?= $value->nama ?></td>
-                                            <td class="text-center"><?= $value->pekerjaan ?></td>
-                                            <td class="text-center"><?= $value->alamat ?></td>
-                                            <td class="text-center"><?= $value->no_hp ?></td>
-                                            <td class="text-center"><?= $value->keterangan ?></td>
-                                            <td class="text-center"><?= $value->kelompok_kbt ?></td>
-                                            <td class="text-center">
-                                                <span class="badge badge-danger"><?= $value->nama_kodim ?> (<?= $value->kode_kodim ?>)</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <a href="<?= base_url('Admin/cKelolaData/deletedata_keluarga_besar_tni/' . $value->id_kbt) ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></a>
-                                                    <button type="button" data-toggle="modal" data-target="#edit<?= $value->id_kbt ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
+                    <!-- Nav Tabs -->
+                    <ul class="nav nav-tabs mb-3" id="kbtTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="tab-kodim-link" data-toggle="tab" href="#tab-kodim" role="tab">
+                                <i class="fas fa-users"></i> Data KBT (Kodim)
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-korem-link" data-toggle="tab" href="#tab-korem" role="tab">
+                                <i class="fas fa-users"></i> Data KBT (Korem)
+                            </a>
+                        </li>
+                    </ul>
 
-                                </tbody>
+                    <div class="tab-content" id="kbtTabContent">
 
-                                <!-- <tfoot>
-                                    <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Pekerjaan</th>
-                                        <th class="text-center">Alamat</th>
-                                        <th class="text-center">No HP</th>
-                                        <th class="text-center">Keterangan</th>
-                                        <th class="text-center">Kelompok KBT</th>
-                                        <th class="text-center">Kodim</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </tfoot> -->
-                            </table>
+                        <!-- ===== TAB KODIM ===== -->
+                        <div class="tab-pane fade show active" id="tab-kodim" role="tabpanel">
+                            <button type="button" class="btn btn-default mb-3" data-toggle="modal" data-target="#modal-default">
+                                <i class="fas fa-plus"></i> Tambah Data Keluarga (Kodim)
+                            </button>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Informasi Data Keluarga Besar TNI - Level Kodim</h3>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center">Nama</th>
+                                                <th class="text-center">Pekerjaan</th>
+                                                <th class="text-center">Alamat</th>
+                                                <th class="text-center">No HP</th>
+                                                <th class="text-center">Keterangan</th>
+                                                <th class="text-center">Kelompok KBT</th>
+                                                <th class="text-center">Satuan</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $no = 1;
+                                            foreach ($data_keluarga_besar_tni as $key => $value) { ?>
+                                                <tr>
+                                                    <td class="text-center"><?= $no++ ?></td>
+                                                    <td class="text-center"><?= $value->nama ?></td>
+                                                    <td class="text-center"><?= $value->pekerjaan ?></td>
+                                                    <td class="text-center"><?= $value->alamat ?></td>
+                                                    <td class="text-center"><?= $value->no_hp ?></td>
+                                                    <td class="text-center"><?= $value->keterangan ?></td>
+                                                    <td class="text-center"><?= $value->kelompok_kbt ?></td>
+                                                    <td class="text-center">
+                                                        <span class="badge badge-danger"><?= $value->nama_kodim ?> (<?= $value->kode_kodim ?>)</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="btn-group">
+                                                            <a href="<?= base_url('Admin/cKelolaData/deletedata_keluarga_besar_tni/' . $value->id_kbt) ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></a>
+                                                            <button type="button" data-toggle="modal" data-target="#edit<?= $value->id_kbt ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.card-body -->
+                        <!-- /.tab-pane kodim -->
+
+                        <!-- ===== TAB KOREM ===== -->
+                        <div class="tab-pane fade" id="tab-korem" role="tabpanel">
+                            <button type="button" class="btn btn-default mb-3" data-toggle="modal" data-target="#modal-tambah-korem">
+                                <i class="fas fa-plus"></i> Tambah Data Keluarga (Korem)
+                            </button>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Informasi Data Keluarga Besar TNI - Level Korem</h3>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example2" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center">Nama</th>
+                                                <th class="text-center">Pekerjaan</th>
+                                                <th class="text-center">Alamat</th>
+                                                <th class="text-center">No HP</th>
+                                                <th class="text-center">Keterangan</th>
+                                                <th class="text-center">Kelompok KBT</th>
+                                                <th class="text-center">Satuan (Korem)</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $no = 1;
+                                            foreach ($data_keluarga_besar_tni_korem as $value) { ?>
+                                                <tr>
+                                                    <td class="text-center"><?= $no++ ?></td>
+                                                    <td class="text-center"><?= $value->nama ?></td>
+                                                    <td class="text-center"><?= $value->pekerjaan ?></td>
+                                                    <td class="text-center"><?= $value->alamat ?></td>
+                                                    <td class="text-center"><?= $value->no_hp ?></td>
+                                                    <td class="text-center"><?= $value->keterangan ?></td>
+                                                    <td class="text-center"><?= $value->kelompok_kbt ?></td>
+                                                    <td class="text-center">
+                                                        <span class="badge badge-primary"><?= $value->nama_korem ?> (<?= $value->kode_korem ?>)</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="btn-group">
+                                                            <a href="<?= base_url('Admin/cKelolaData/deletedata_keluarga_besar_tni_korem/' . $value->id_kbt_korem) ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></a>
+                                                            <button type="button" data-toggle="modal" data-target="#editkorem<?= $value->id_kbt_korem ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.tab-pane korem -->
+
                     </div>
-                    <!-- /.card -->
+                    <!-- /.tab-content -->
                 </div>
             </div>
         </div>
@@ -125,12 +177,12 @@
 </div>
 <!-- /.content-wrapper -->
 
-<!-- Modal Tambah Data -->
+<!-- ===== MODAL TAMBAH KODIM ===== -->
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Data Keluarga Besar TNI</h4>
+                <h4 class="modal-title">Tambah Data Keluarga Besar TNI (Kodim)</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -138,8 +190,8 @@
             <form action="<?= base_url('Admin/cKelolaData/createdata_keluarga_besar_tni') ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="id_kodim">Pilih Kodim</label>
-                        <select class="form-control" id="id_kodim" name="id_kodim" required>
+                        <label>Pilih Kodim</label>
+                        <select class="form-control" name="id_kodim" required>
                             <option value="">-- Pilih Kodim --</option>
                             <?php foreach ($kodim as $k) { ?>
                                 <option value="<?= $k->id_kodim ?>"><?= $k->nama_kodim ?> (<?= $k->kode_kodim ?>)</option>
@@ -147,8 +199,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="kelompok_organisasi">Kelompok KBT</label>
-                        <select class="form-control" id="kelompok_organisasi" name="kelompok_kbt" required>
+                        <label>Kelompok KBT</label>
+                        <select class="form-control" name="kelompok_kbt" required>
                             <option value="">-- Pilih Kelompok --</option>
                             <?php foreach ($kelompok_options as $option) : ?>
                                 <option value="<?= $option ?>"><?= $option ?></option>
@@ -156,24 +208,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
+                        <label>Nama</label>
+                        <input type="text" class="form-control" name="nama" required>
                     </div>
                     <div class="form-group">
-                        <label for="pekerjaan">Pekerjaan</label>
-                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan">
+                        <label>Pekerjaan</label>
+                        <input type="text" class="form-control" name="pekerjaan">
                     </div>
                     <div class="form-group">
-                        <label for="no_hp">No HP</label>
-                        <input type="text" class="form-control" id="no_hp" name="no_hp">
+                        <label>No HP</label>
+                        <input type="text" class="form-control" name="no_hp">
                     </div>
                     <div class="form-group">
-                        <label for="alamat">Alamat</label>
-                        <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="alamat" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <textarea class="form-control" id="keterangan" name="keterangan" rows="3"></textarea>
+                        <label>Keterangan</label>
+                        <textarea class="form-control" name="keterangan" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -182,21 +234,16 @@
                 </div>
             </form>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
 
-<!-- Modal Edit Data -->
-<?php
-foreach ($data_keluarga_besar_tni as $key => $value) {
-?>
+<!-- ===== MODAL EDIT KODIM ===== -->
+<?php foreach ($data_keluarga_besar_tni as $key => $value) { ?>
     <div class="modal fade" id="edit<?= $value->id_kbt ?>">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Data Keluarga Besar TNI</h4>
+                    <h4 class="modal-title">Edit Data Keluarga Besar TNI (Kodim)</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -204,8 +251,8 @@ foreach ($data_keluarga_besar_tni as $key => $value) {
                 <form action="<?= base_url('Admin/cKelolaData/updatedata_keluarga_besar_tni/' . $value->id_kbt) ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="id_kodim">Pilih Kodim</label>
-                            <select class="form-control" id="id_kodim" name="id_kodim" required>
+                            <label>Pilih Kodim</label>
+                            <select class="form-control" name="id_kodim" required>
                                 <option value="">-- Pilih Kodim --</option>
                                 <?php foreach ($kodim as $k) { ?>
                                     <option value="<?= $k->id_kodim ?>" <?= ($k->id_kodim == $value->id_kodim) ? 'selected' : '' ?>><?= $k->nama_kodim ?> (<?= $k->kode_kodim ?>)</option>
@@ -213,8 +260,8 @@ foreach ($data_keluarga_besar_tni as $key => $value) {
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="kelompok_kbt">Kelompok KBT</label>
-                            <select class="form-control" id="kelompok_kbt" name="kelompok_kbt" required>
+                            <label>Kelompok KBT</label>
+                            <select class="form-control" name="kelompok_kbt" required>
                                 <option value="">-- Pilih Kelompok --</option>
                                 <?php foreach ($kelompok_options as $option) : ?>
                                     <option value="<?= $option ?>" <?= ($value->kelompok_kbt == $option) ? 'selected' : '' ?>><?= $option ?></option>
@@ -222,24 +269,24 @@ foreach ($data_keluarga_besar_tni as $key => $value) {
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $value->nama ?>" required>
+                            <label>Nama</label>
+                            <input type="text" class="form-control" name="nama" value="<?= $value->nama ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="pekerjaan">Pekerjaan</label>
-                            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" value="<?= $value->pekerjaan ?>">
+                            <label>Pekerjaan</label>
+                            <input type="text" class="form-control" name="pekerjaan" value="<?= $value->pekerjaan ?>">
                         </div>
                         <div class="form-group">
-                            <label for="no_hp">No HP</label>
-                            <input type="text" class="form-control" id="no_hp" name="no_hp" value="<?= $value->no_hp ?>">
+                            <label>No HP</label>
+                            <input type="text" class="form-control" name="no_hp" value="<?= $value->no_hp ?>">
                         </div>
                         <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <textarea class="form-control" id="alamat" name="alamat" rows="3"><?= $value->alamat ?></textarea>
+                            <label>Alamat</label>
+                            <textarea class="form-control" name="alamat" rows="3"><?= $value->alamat ?></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="keterangan">Keterangan</label>
-                            <textarea class="form-control" id="keterangan" name="keterangan" rows="3"><?= $value->keterangan ?></textarea>
+                            <label>Keterangan</label>
+                            <textarea class="form-control" name="keterangan" rows="3"><?= $value->keterangan ?></textarea>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -248,11 +295,128 @@ foreach ($data_keluarga_besar_tni as $key => $value) {
                     </div>
                 </form>
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
-<?php
-}
-?>
+<?php } ?>
+
+<!-- ===== MODAL TAMBAH KOREM ===== -->
+<div class="modal fade" id="modal-tambah-korem">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Data Keluarga Besar TNI (Korem)</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('Admin/cKelolaData/createdata_keluarga_besar_tni_korem') ?>" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Pilih Korem</label>
+                        <select class="form-control" name="id_korem" required>
+                            <option value="">-- Pilih Korem --</option>
+                            <?php foreach ($korem as $k) { ?>
+                                <option value="<?= $k->id_korem ?>"><?= $k->nama_korem ?> (<?= $k->kode_korem ?>)</option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Kelompok KBT</label>
+                        <select class="form-control" name="kelompok_kbt" required>
+                            <option value="">-- Pilih Kelompok --</option>
+                            <?php foreach ($kelompok_options as $option) : ?>
+                                <option value="<?= $option ?>"><?= $option ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" class="form-control" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pekerjaan</label>
+                        <input type="text" class="form-control" name="pekerjaan">
+                    </div>
+                    <div class="form-group">
+                        <label>No HP</label>
+                        <input type="text" class="form-control" name="no_hp">
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="alamat" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <textarea class="form-control" name="keterangan" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MODAL EDIT KOREM ===== -->
+<?php foreach ($data_keluarga_besar_tni_korem as $value) { ?>
+    <div class="modal fade" id="editkorem<?= $value->id_kbt_korem ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Data Keluarga Besar TNI (Korem)</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('Admin/cKelolaData/updatedata_keluarga_besar_tni_korem/' . $value->id_kbt_korem) ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Pilih Korem</label>
+                            <select class="form-control" name="id_korem" required>
+                                <option value="">-- Pilih Korem --</option>
+                                <?php foreach ($korem as $k) { ?>
+                                    <option value="<?= $k->id_korem ?>" <?= ($k->id_korem == $value->id_korem) ? 'selected' : '' ?>><?= $k->nama_korem ?> (<?= $k->kode_korem ?>)</option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kelompok KBT</label>
+                            <select class="form-control" name="kelompok_kbt" required>
+                                <option value="">-- Pilih Kelompok --</option>
+                                <?php foreach ($kelompok_options as $option) : ?>
+                                    <option value="<?= $option ?>" <?= ($value->kelompok_kbt == $option) ? 'selected' : '' ?>><?= $option ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" name="nama" value="<?= $value->nama ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Pekerjaan</label>
+                            <input type="text" class="form-control" name="pekerjaan" value="<?= $value->pekerjaan ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>No HP</label>
+                            <input type="text" class="form-control" name="no_hp" value="<?= $value->no_hp ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat</label>
+                            <textarea class="form-control" name="alamat" rows="3"><?= $value->alamat ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <textarea class="form-control" name="keterangan" rows="3"><?= $value->keterangan ?></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php } ?>

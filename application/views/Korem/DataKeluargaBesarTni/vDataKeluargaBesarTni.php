@@ -47,7 +47,7 @@ $kelompok_options = [
                                         <th class="text-center">No HP</th>
                                         <th class="text-center">Keterangan</th>
                                         <th class="text-center">Kelompok KBT</th>
-                                        <th class="text-center">Kodim</th>
+                                        <th class="text-center">Satuan</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>

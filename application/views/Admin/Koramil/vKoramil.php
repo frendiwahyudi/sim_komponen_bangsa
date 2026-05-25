@@ -46,7 +46,7 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">Kode Koramil</th>
                                         <th class="text-center">Nama Koramil</th>
-                                        <th class="text-center">Kodim</th>
+                                        <th class="text-center">Satuan</th>
                                         <th class="text-center">Wilayah</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -84,7 +84,7 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">Kode Koramil</th>
                                         <th class="text-center">Nama Koramil</th>
-                                        <th class="text-center">Kodim</th>
+                                        <th class="text-center">Satuan</th>
                                         <th class="text-center">Wilayah</th>
                                         <th class="text-center">Action</th>
                                     </tr>
