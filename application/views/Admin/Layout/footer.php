@@ -68,6 +68,27 @@
     });
 </script>
 <script>
+    $(function() {
+        $("#example2").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+
+        //Date range picker
+        $('#reservationdate').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+    });
+</script>
+<script>
+    $(function() {
+        $(".example2").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+    });
+</script>
+<script>
     window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideUp(500, function() {
             $(this).remove();
