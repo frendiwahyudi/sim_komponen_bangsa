@@ -68,7 +68,7 @@
                             </button>
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Informasi Data Keluarga Besar TNI - Level Kodim</h3>
+                                    <h3 class="card-title">Informasi Data Keluarga Besar TNI - Kodim</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -121,7 +121,7 @@
                             </button>
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Informasi Data Keluarga Besar TNI - Level Korem</h3>
+                                    <h3 class="card-title">Informasi Data Keluarga Besar TNI - Korem</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="example2" class="table table-bordered table-striped">
@@ -134,7 +134,7 @@
                                                 <th class="text-center">No HP</th>
                                                 <th class="text-center">Keterangan</th>
                                                 <th class="text-center">Kelompok KBT</th>
-                                                <th class="text-center">Satuan (Korem)</th>
+                                                <th class="text-center">Satuan</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -150,7 +150,7 @@
                                                     <td class="text-center"><?= $value->keterangan ?></td>
                                                     <td class="text-center"><?= $value->kelompok_kbt ?></td>
                                                     <td class="text-center">
-                                                        <span class="badge badge-primary"><?= $value->nama_korem ?> (<?= $value->kode_korem ?>)</span>
+                                                        <span class="badge badge-info"><?= $value->nama_korem ?> (<?= $value->kode_korem ?>)</span>
                                                     </td>
                                                     <td class="text-center">
                                                         <div class="btn-group">

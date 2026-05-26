@@ -59,7 +59,7 @@
                             </button>
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Informasi Data Para Tokoh - Level Kodim</h3>
+                                    <h3 class="card-title">Informasi Data Para Tokoh - Kodim</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -112,7 +112,7 @@
                             </button>
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Informasi Data Para Tokoh - Level Korem</h3>
+                                    <h3 class="card-title">Informasi Data Para Tokoh - Korem</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="example2" class="table table-bordered table-striped">
@@ -141,7 +141,7 @@
                                                     <td class="text-center"><?= $value->kategori_tokoh ?></td>
                                                     <td class="text-center"><?= $value->keterangan ?></td>
                                                     <td class="text-center">
-                                                        <span class="badge badge-primary"><?= $value->nama_korem ?> (<?= $value->kode_korem ?>)</span>
+                                                        <span class="badge badge-info"><?= $value->nama_korem ?> (<?= $value->kode_korem ?>)</span>
                                                     </td>
                                                     <td class="text-center">
                                                         <div class="btn-group">
@@ -191,12 +191,7 @@
                     </div>
                     <div class="form-group">
                         <label>Kategori Tokoh</label>
-                        <select class="form-control" name="kategori_tokoh" required>
-                            <option value="">-- Pilih Kategori --</option>
-                            <?php foreach ($kategori_tokoh_options as $option) : ?>
-                                <option value="<?= $option ?>"><?= $option ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <input type="text" class="form-control" name="kategori_tokoh">
                     </div>
                     <div class="form-group">
                         <label>Nama Tokoh</label>
@@ -252,12 +247,7 @@
                         </div>
                         <div class="form-group">
                             <label>Kategori Tokoh</label>
-                            <select class="form-control" name="kategori_tokoh" required>
-                                <option value="">-- Pilih Kategori --</option>
-                                <?php foreach ($kategori_tokoh_options as $option) : ?>
-                                    <option value="<?= $option ?>" <?= ($value->kategori_tokoh == $option) ? 'selected' : '' ?>><?= $option ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <input type="text" class="form-control" name="kategori_tokoh" value="<?= $value->kategori_tokoh ?>">
                         </div>
                         <div class="form-group">
                             <label>Nama Tokoh</label>
@@ -313,12 +303,7 @@
                     </div>
                     <div class="form-group">
                         <label>Kategori Tokoh</label>
-                        <select class="form-control" name="kategori_tokoh" required>
-                            <option value="">-- Pilih Kategori --</option>
-                            <?php foreach ($kategori_tokoh_options as $option) : ?>
-                                <option value="<?= $option ?>"><?= $option ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <input type="text" class="form-control" name="kategori_tokoh" required>
                     </div>
                     <div class="form-group">
                         <label>Nama Tokoh</label>
@@ -374,12 +359,7 @@
                         </div>
                         <div class="form-group">
                             <label>Kategori Tokoh</label>
-                            <select class="form-control" name="kategori_tokoh" required>
-                                <option value="">-- Pilih Kategori --</option>
-                                <?php foreach ($kategori_tokoh_options as $option) : ?>
-                                    <option value="<?= $option ?>" <?= ($value->kategori_tokoh == $option) ? 'selected' : '' ?>><?= $option ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <input type="text" class="form-control" name="kategori_tokoh" value="<?= $value->kategori_tokoh ?>">
                         </div>
                         <div class="form-group">
                             <label>Nama Tokoh</label>

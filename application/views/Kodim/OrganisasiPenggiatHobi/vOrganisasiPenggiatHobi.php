@@ -35,7 +35,7 @@
                             <h3 class="card-title">
                                 Organisasi Penggiat Hobi
                                 <?php if ($my_kodim) { ?>
-                                    &mdash; <span class="badge badge-primary"><?= $my_kodim->nama_kodim ?> (<?= $my_kodim->kode_kodim ?>)</span>
+                                    &mdash; <span class="badge badge-danger"><?= $my_kodim->nama_kodim ?> (<?= $my_kodim->kode_kodim ?>)</span>
                                 <?php } ?>
                             </h3>
                         </div>
@@ -48,6 +48,8 @@
                                         <th class="text-center">Nama Ketua/Pengurus</th>
                                         <th class="text-center">Pekerjaan</th>
                                         <th class="text-center">No HP</th>
+                                        <th class="text-center">Alamat</th>
+                                        <th class="text-center">Keterangan</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -60,6 +62,8 @@
                                             <td class="text-center"><?= $value->ketua_komunitas ?></td>
                                             <td class="text-center"><?= $value->pekerjaan ?></td>
                                             <td class="text-center"><?= $value->no_hp ?></td>
+                                            <td><?= $value->alamat ?></td>
+                                            <td><?= $value->keterangan ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="<?= base_url('Kodim/cKelolaData/deleteorganisasi_penggiat_hobi/' . $value->id_hobi) ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')"><i class="fas fa-trash"></i></a>
@@ -94,24 +98,38 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group"><label>Nama Komunitas</label><input type="text" name="nama_komunitas" class="form-control" required></div>
+                            <div class="form-group">
+                                <label>Nama Komunitas</label>
+                                <input type="text" name="nama_komunitas" class="form-control" required>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group"><label>Ketua Komunitas</label><input type="text" name="ketua_komunitas" class="form-control"></div>
+                            <div class="form-group">
+                                <label>Nama Ketua/Pengurus</label>
+                                <input type="text" name="ketua_komunitas" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pekerjaan</label>
+                                <input type="text" name="pekerjaan" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>No HP</label>
+                                <input type="text" name="no_hp" class="form-control">
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group"><label>Pekerjaan</label><input type="text" name="pekerjaan" class="form-control"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group"><label>No HP</label><input type="text" name="no_hp" class="form-control"></div>
-                        </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea name="alamat" class="form-control" rows="2"></textarea>
                     </div>
-                    <div class="form-group"><label>Alamat</label><textarea name="alamat" class="form-control" rows="2"></textarea></div>
-                    <div class="form-group"><label>Keterangan</label><textarea name="keterangan" class="form-control" rows="2"></textarea></div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <textarea name="keterangan" class="form-control" rows="2"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
@@ -146,21 +164,31 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="ketua_komunitas">Ketua Komunitas</label>
+                                    <label for="ketua_komunitas">Nama Ketua/Pengurus</label>
                                     <input type="text" class="form-control" id="ketua_komunitas" name="ketua_komunitas" value="<?= $value->ketua_komunitas ?>">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"><label>Pekerjaan</label><input type="text" name="pekerjaan" value="<?= $value->pekerjaan ?>" class="form-control"></div>
+                                <div class="form-group">
+                                    <label>Pekerjaan</label>
+                                    <input type="text" name="pekerjaan" value="<?= $value->pekerjaan ?>" class="form-control">
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group"><label>No HP</label><input type="text" name="no_hp" value="<?= $value->no_hp ?>" class="form-control"></div>
+                                <div class="form-group">
+                                    <label>No HP</label>
+                                    <input type="text" name="no_hp" value="<?= $value->no_hp ?>" class="form-control">
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group"><label>Alamat</label><textarea name="alamat" class="form-control" rows="2"><?= $value->alamat ?></textarea></div>
-                        <div class="form-group"><label>Keterangan</label><textarea name="keterangan" class="form-control" rows="2"><?= $value->keterangan ?></textarea></div>
+                        <div class="form-group">
+                            <label>Alamat</label>
+                            <textarea name="alamat" class="form-control" rows="2"><?= $value->alamat ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <textarea name="keterangan" class="form-control" rows="2"><?= $value->keterangan ?></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>

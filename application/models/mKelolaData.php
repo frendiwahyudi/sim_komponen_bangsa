@@ -446,6 +446,42 @@ class mKelolaData extends CI_Model
         $this->db->where('id_kbt_korem', $id);
         $this->db->delete('data_keluarga_besar_tni_korem');
     }
+
+    public function select_data_keluarga_besar_tni_korem_by_korem($id_korem)
+    {
+        $this->db->select('dkbtkr.*, kr.nama_korem, kr.kode_korem');
+        $this->db->from('data_keluarga_besar_tni_korem dkbtkr');
+        $this->db->join('korem kr', 'dkbtkr.id_korem = kr.id_korem', 'left');
+        $this->db->where('dkbtkr.id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
+
+    public function select_data_para_tokoh_korem_by_korem($id_korem)
+    {
+        $this->db->select('dptkr.*, kr.nama_korem, kr.kode_korem');
+        $this->db->from('data_para_tokoh_korem dptkr');
+        $this->db->join('korem kr', 'dptkr.id_korem = kr.id_korem', 'left');
+        $this->db->where('dptkr.id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
+
+    public function select_data_organisasi_korem_by_korem($id_korem)
+    {
+        $this->db->select('dokr.*, kr.nama_korem, kr.kode_korem');
+        $this->db->from('data_organisasi_korem dokr');
+        $this->db->join('korem kr', 'dokr.id_korem = kr.id_korem', 'left');
+        $this->db->where('dokr.id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
+
+    public function select_organisasi_penggiat_hobi_korem_by_korem($id_korem)
+    {
+        $this->db->select('ophkr.*, kr.nama_korem, kr.kode_korem');
+        $this->db->from('organisasi_penggiat_hobi_korem ophkr');
+        $this->db->join('korem kr', 'ophkr.id_korem = kr.id_korem', 'left');
+        $this->db->where('ophkr.id_korem', $id_korem);
+        return $this->db->get()->result();
+    }
 }
 
 /* End of file mKelolaData.php */

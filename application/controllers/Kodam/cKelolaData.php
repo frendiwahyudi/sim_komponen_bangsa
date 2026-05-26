@@ -116,7 +116,10 @@ class cKelolaData extends CI_Controller
 
     public function data_keluarga_besar_tni()
     {
-        $data = array('data_keluarga_besar_tni' => $this->mKelolaData->select_data_keluarga_besar_tni());
+        $data = array(
+            'data_keluarga_besar_tni'       => $this->mKelolaData->select_data_keluarga_besar_tni(),
+            'data_keluarga_besar_tni_korem' => $this->mKelolaData->select_data_keluarga_besar_tni_korem(),
+        );
         $this->load->view('Kodam/Layout/head');
         $this->load->view('Kodam/Layout/aside');
         $this->load->view('Kodam/DataKeluargaBesarTni/vDataKeluargaBesarTni', $data);
@@ -125,7 +128,10 @@ class cKelolaData extends CI_Controller
 
     public function data_para_tokoh()
     {
-        $data = array('data_para_tokoh' => $this->mKelolaData->select_data_para_tokoh());
+        $data = array(
+            'data_para_tokoh'       => $this->mKelolaData->select_data_para_tokoh(),
+            'data_para_tokoh_korem' => $this->mKelolaData->select_data_para_tokoh_korem(),
+        );
         $this->load->view('Kodam/Layout/head');
         $this->load->view('Kodam/Layout/aside');
         $this->load->view('Kodam/DataParaTokoh/vDataParaTokoh', $data);
@@ -134,7 +140,10 @@ class cKelolaData extends CI_Controller
 
     public function data_organisasi()
     {
-        $data = array('data_organisasi' => $this->mKelolaData->select_data_organisasi());
+        $data = array(
+            'data_organisasi'       => $this->mKelolaData->select_data_organisasi(),
+            'data_organisasi_korem' => $this->mKelolaData->select_data_organisasi_korem(),
+        );
         $this->load->view('Kodam/Layout/head');
         $this->load->view('Kodam/Layout/aside');
         $this->load->view('Kodam/DataOrganisasi/vDataOrganisasi', $data);
@@ -143,7 +152,10 @@ class cKelolaData extends CI_Controller
 
     public function organisasi_penggiat_hobi()
     {
-        $data = array('organisasi_penggiat_hobi' => $this->mKelolaData->select_organisasi_penggiat_hobi());
+        $data = array(
+            'organisasi_penggiat_hobi'       => $this->mKelolaData->select_organisasi_penggiat_hobi(),
+            'organisasi_penggiat_hobi_korem' => $this->mKelolaData->select_organisasi_penggiat_hobi_korem(),
+        );
         $this->load->view('Kodam/Layout/head');
         $this->load->view('Kodam/Layout/aside');
         $this->load->view('Kodam/OrganisasiPenggiatHobi/vOrganisasiPenggiatHobi', $data);

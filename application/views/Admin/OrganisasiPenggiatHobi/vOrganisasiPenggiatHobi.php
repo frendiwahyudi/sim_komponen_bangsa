@@ -56,7 +56,7 @@
                             </button>
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Informasi Organisasi Penggiat Hobi - Level Kodim</h3>
+                                    <h3 class="card-title">Informasi Organisasi Penggiat Hobi - Kodim</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -110,7 +110,7 @@
                             </button>
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Informasi Organisasi Penggiat Hobi - Level Korem</h3>
+                                    <h3 class="card-title">Informasi Organisasi Penggiat Hobi - Korem</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="example2" class="table table-bordered table-striped">
@@ -123,7 +123,7 @@
                                                 <th class="text-center">No HP</th>
                                                 <th class="text-center">Alamat</th>
                                                 <th class="text-center">Keterangan</th>
-                                                <th class="text-center">Satuan (Korem)</th>
+                                                <th class="text-center">Satuan</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -140,7 +140,7 @@
                                                     <td class="text-center"><?= $value->keterangan ?></td>
                                                     <td class="text-center">
                                                         <small class="text-muted"><?= $value->kode_korem ?></small><br>
-                                                        <span class="badge badge-primary"><?= $value->nama_korem ?></span>
+                                                        <span class="badge badge-info"><?= $value->nama_korem ?></span>
                                                     </td>
                                                     <td class="text-center">
                                                         <div class="btn-group">
@@ -197,7 +197,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Ketua Komunitas</label>
+                                <label>Nama Ketua/Pengurus</label>
                                 <input type="text" class="form-control" name="ketua_komunitas">
                             </div>
                         </div>
@@ -263,7 +263,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Ketua Komunitas</label>
+                                    <label>Nama Ketua/Pengurus</label>
                                     <input type="text" class="form-control" name="ketua_komunitas" value="<?= $value->ketua_komunitas ?>">
                                 </div>
                             </div>
@@ -329,7 +329,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Ketua Komunitas</label>
+                                <label>Nama Ketua/Pengurus</label>
                                 <input type="text" class="form-control" name="ketua_komunitas">
                             </div>
                         </div>
@@ -395,7 +395,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Ketua Komunitas</label>
+                                    <label>Nama Ketua/Pengurus</label>
                                     <input type="text" class="form-control" name="ketua_komunitas" value="<?= $value->ketua_komunitas ?>">
                                 </div>
                             </div>
