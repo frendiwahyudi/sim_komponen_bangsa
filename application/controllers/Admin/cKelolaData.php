@@ -721,16 +721,7 @@ class cKelolaData extends CI_Controller
     //data_keluarga_besar_tni_korem
     public function data_keluarga_besar_tni_korem()
     {
-        $data = array(
-            'data_keluarga_besar_tni' => $this->mKelolaData->select_data_keluarga_besar_tni(),
-            'data_keluarga_besar_tni_korem' => $this->mKelolaData->select_data_keluarga_besar_tni_korem(),
-            'kodim' => $this->mKelolaData->select_kodim(),
-            'korem' => $this->mKelolaData->select_korem()
-        );
-        $this->load->view('Admin/Layout/head');
-        $this->load->view('Admin/Layout/aside');
-        $this->load->view('Admin/DataKeluargaBesarTni/vDataKeluargaBesarTniKorem', $data);
-        $this->load->view('Admin/Layout/footer');
+        redirect('Admin/cKelolaData/data_keluarga_besar_tni');
     }
     public function createdata_keluarga_besar_tni_korem()
     {
@@ -745,7 +736,8 @@ class cKelolaData extends CI_Controller
         );
         $this->mKelolaData->insert_data_keluarga_besar_tni_korem($data);
         $this->session->set_flashdata('success', 'Data Keluarga Besar TNI Korem Berhasil Ditambahkan!');
-        redirect('Admin/cKelolaData/data_keluarga_besar_tni_korem');
+        $this->session->set_flashdata('active_tab', 'korem');
+        redirect('Admin/cKelolaData/data_keluarga_besar_tni');
     }
     public function updatedata_keluarga_besar_tni_korem($id)
     {
@@ -760,13 +752,15 @@ class cKelolaData extends CI_Controller
         );
         $this->mKelolaData->update_data_keluarga_besar_tni_korem($id, $data);
         $this->session->set_flashdata('success', 'Data Keluarga Besar TNI Korem Berhasil Diperbaharui!');
-        redirect('Admin/cKelolaData/data_keluarga_besar_tni_korem');
+        $this->session->set_flashdata('active_tab', 'korem');
+        redirect('Admin/cKelolaData/data_keluarga_besar_tni');
     }
     public function deletedata_keluarga_besar_tni_korem($id)
     {
         $this->mKelolaData->delete_data_keluarga_besar_tni_korem($id);
         $this->session->set_flashdata('success', 'Data Keluarga Besar TNI Korem Berhasil Dihapus!');
-        redirect('Admin/cKelolaData/data_keluarga_besar_tni_korem');
+        $this->session->set_flashdata('active_tab', 'korem');
+        redirect('Admin/cKelolaData/data_keluarga_besar_tni');
     }
 }
 

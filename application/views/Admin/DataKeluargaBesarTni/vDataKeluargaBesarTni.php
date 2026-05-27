@@ -420,3 +420,10 @@
         </div>
     </div>
 <?php } ?>
+<?php if ($this->session->flashdata('active_tab') == 'korem') { ?>
+<script>
+    $(document).ready(function () {
+        $('#tab-korem-link').tab('show');
+    });
+</script>
+<?php } ?>
