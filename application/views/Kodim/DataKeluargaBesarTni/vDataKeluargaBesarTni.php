@@ -16,7 +16,7 @@
     </section>
     <section class="content">
         <?php
-        $kelompok_options = ['PEPABRI', 'LVRI', 'PPAD', 'PERIP', 'PIVERI', 'PD X KB FKPPI Jabar', 'PD X GM FKPPI Jabar', 'Pemuda Panca Marga', 'HIPAKAD', 'Dharma Pertiwi', 'Warakawuri', 'Korpti Unit TNI', 'PP Kowad'];
+        $kelompok_options = ['PEPABRI', 'LVRI', 'PPAD', 'PERIP', 'PIVERI', 'Keluarga Besar FKPPI', 'Generasi Muda FKPPI', 'Pemuda Panca Marga', 'HIPAKAD', 'Dharma Pertiwi', 'Warakawuri', 'Korpti Unit TNI', 'PP Kowad'];
         if ($this->session->userdata('success')) { ?>
             <div class="alert alert-success alert-dismissible mt-3">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

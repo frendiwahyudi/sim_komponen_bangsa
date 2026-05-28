@@ -26,8 +26,8 @@
             'PPAD',
             'PERIP',
             'PIVERI',
-            'PD X KB FKPPI Jabar',
-            'PD X GM FKPPI Jabar',
+            'Keluarga Besar FKPPI',
+            'Generasi Muda FKPPI',
             'Pemuda Panca Marga',
             'HIPAKAD',
             'Dharma Pertiwi',
@@ -421,9 +421,9 @@
     </div>
 <?php } ?>
 <?php if ($this->session->flashdata('active_tab') == 'korem') { ?>
-<script>
-    $(document).ready(function () {
-        $('#tab-korem-link').tab('show');
-    });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#tab-korem-link').tab('show');
+        });
+    </script>
 <?php } ?>
